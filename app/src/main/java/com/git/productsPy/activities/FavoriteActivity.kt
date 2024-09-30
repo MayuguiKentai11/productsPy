@@ -1,5 +1,6 @@
 package com.git.productsPy.activities
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -17,18 +18,24 @@ class FavoriteActivity : AppCompatActivity(), ProductAdapter.OnItemClickListener
 
     private lateinit var rvFavorite: RecyclerView
 
+    @SuppressLint("MissingInflateId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         enableEdgeToEdge()
+
         setContentView(R.layout.activity_favorite)
 
         setSupportActionBar(findViewById(R.id.toolbar))
 
 
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
         rvFavorite = findViewById(R.id.rvFavorite)
+        rvFavorite.layoutManager = LinearLayoutManager(this@FavoriteActivity)
     }
 
     override fun onResume() {
@@ -36,7 +43,6 @@ class FavoriteActivity : AppCompatActivity(), ProductAdapter.OnItemClickListener
         loadProduct {
             product ->
             rvFavorite.adapter = ProductAdapter(product, this)
-            rvFavorite.layoutManager = LinearLayoutManager(this@FavoriteActivity)
         }
 
     }
@@ -60,7 +66,6 @@ class FavoriteActivity : AppCompatActivity(), ProductAdapter.OnItemClickListener
         loadProduct {
             products ->
             rvFavorite.adapter = ProductAdapter(products, this)
-            rvFavorite.layoutManager = LinearLayoutManager(this@FavoriteActivity)
         }
     }
 

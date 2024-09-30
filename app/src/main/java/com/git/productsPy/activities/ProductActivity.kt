@@ -35,6 +35,7 @@ class ProductActivity : AppCompatActivity(), ProductAdapter.OnItemClickListener 
         btLoad = findViewById(R.id.btLoad)
 
         rvProducts = findViewById(R.id.rvProducts)
+        rvProducts.layoutManager = LinearLayoutManager(this@ProductActivity)
 
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
@@ -52,7 +53,6 @@ class ProductActivity : AppCompatActivity(), ProductAdapter.OnItemClickListener 
                 products ->
                 rvProducts.adapter = ProductAdapter(products, this)
 
-                rvProducts.layoutManager = LinearLayoutManager(this@ProductActivity)
             }
         }
     }
@@ -61,7 +61,7 @@ class ProductActivity : AppCompatActivity(), ProductAdapter.OnItemClickListener 
     private fun loadProducts(onComplete : (List<Product>)-> Unit){
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://fakestoreapi.com/products/")
+            .baseUrl("https://fakestoreapi.com")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
