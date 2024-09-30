@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">RandomCommentsPy</string>
+    <string name="favorites">Favorites</string>
+    <string name="welcome_to_store">Welcome To Store!</string>
+    <string name="products">Products</string>
+    <string name="logo_of_the_business">logo of the business</string>
+    <string name="price">Price</string>
+    <string name="description">Description</string>
+    <string name="like">like</string>
+    <string name="title">Title</string>
+    <string name="image_product">image product</string>
+    <string name="fetch_the_products">Fetch the Products!</string>
+    <string name="click_here">CLICK HERE!</string>
+</resources>

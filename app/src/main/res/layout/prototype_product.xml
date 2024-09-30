@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/ivLogoProduct"
+        android:layout_width="97dp"
+        android:layout_height="95dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="11dp"
+        android:contentDescription="@string/image_product"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvPriceProduct"
+        android:layout_width="96dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="22dp"
+        android:text="@string/price"
+        app:layout_constraintStart_toEndOf="@+id/ivLogoProduct"
+        app:layout_constraintTop_toBottomOf="@+id/tvDescriptionProduct" />
+
+    <TextView
+        android:id="@+id/tvDescriptionProduct"
+        android:layout_width="126dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/description"
+        app:layout_constraintStart_toEndOf="@+id/ivLogoProduct"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleProduct" />
+
+    <ImageButton
+        android:id="@+id/btLike"
+        android:layout_width="96dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="23dp"
+        android:backgroundTint="#00FFFFFF"
+        android:contentDescription="@string/like"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/ivLogoProduct"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/baseline_favorite_24" />
+
+    <TextView
+        android:id="@+id/tvTitleProduct"
+        android:layout_width="123dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="19dp"
+        android:text="@string/title"
+        app:layout_constraintStart_toEndOf="@+id/ivLogoProduct"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
