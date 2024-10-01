@@ -3,17 +3,15 @@ package com.git.productsPy.activities
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.git.myapplication.R
+import com.git.productsPy.R
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var btProducts : Button
 
     private lateinit var btFavorites : Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

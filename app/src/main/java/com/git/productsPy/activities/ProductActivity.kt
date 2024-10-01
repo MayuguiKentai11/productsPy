@@ -3,13 +3,13 @@ package com.git.productsPy.activities
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.git.myapplication.R
+import com.git.productsPy.R
 import com.git.productsPy.adapters.ProductAdapter
 import com.git.productsPy.communication.ApiResponse
+import com.git.productsPy.communication.ProductResponse
 import com.git.productsPy.db.AppDatabase
 import com.git.productsPy.models.Product
 import com.git.productsPy.network.ProductApiService
@@ -35,11 +35,11 @@ class ProductActivity : AppCompatActivity(), ProductAdapter.OnItemClickListener 
         btLoad = findViewById(R.id.btLoad)
 
         rvProducts = findViewById(R.id.rvProducts)
-        rvProducts.layoutManager = LinearLayoutManager(this@ProductActivity)
 
-        supportActionBar?.setDisplayShowHomeEnabled(true)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        supportActionBar?.setDisplayShowHomeEnabled(true)
 
     }
 
@@ -52,57 +52,54 @@ class ProductActivity : AppCompatActivity(), ProductAdapter.OnItemClickListener 
             loadProducts {
                 products ->
                 rvProducts.adapter = ProductAdapter(products, this)
-
+                rvProducts.layoutManager = LinearLayoutManager(this@ProductActivity)
             }
         }
     }
 
 
-    private fun loadProducts(onComplete : (List<Product>)-> Unit){
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://fakestoreapi.com")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+    private fun loadProducts(onComplete : (List<Product>) -> Unit){
+        // Retrofit is the HttpClient for Android and Java
+        val retrofit = Retrofit.Builder().baseUrl("https://fakestoreapi.com/").addConverterFactory(
+            GsonConverterFactory.create()).build()
 
         val productApiService : ProductApiService = retrofit.create(ProductApiService::class.java)
 
         val request = productApiService.getProducts()
 
-
-        request.enqueue(object : Callback<ApiResponse>{
-
-            override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
+        request.enqueue(object : Callback<List<ProductResponse>>{
+            override fun onResponse(call: Call<List<ProductResponse>>, response: Response<List<ProductResponse>>) {
                 if(response.isSuccessful){
-                    val productApi:ApiResponse = response.body()!!
+                    println("funciono!")
 
+                    val apiResponse : List<ProductResponse> = response.body() !!
 
                     val productList = mutableListOf<Product>()
 
-                    productApi.results?.forEach{
+                    apiResponse?.forEach {
                         productList.add(it.toProduct())
                     }
 
                     onComplete(productList)
-
+                }else{
+                    println("Error: ${response.errorBody()?.string()}")
                 }
             }
 
-            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+            override fun onFailure(call: Call<List<ProductResponse>>, t: Throwable) {
                 println("Error: ${t.message}")
+                t.printStackTrace()
             }
         })
 
     }
 
-
-    // Calling from Adapter and executes a behavior depending of the emission context.
     override fun onItemClick(product: Product) {
         val dao = AppDatabase.getInstance(this).getDao()
 
         dao.insertProduct(product)
 
-        Toast.makeText(this, "The product with name: " + product.title + "was successfully added to the favorite list!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, product.title + "has been added to the favorite list!", Toast.LENGTH_SHORT).show()
 
     }
 

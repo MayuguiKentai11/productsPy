@@ -11,11 +11,9 @@ data class Product(
     @PrimaryKey
     val id : Int? = null,
     @ColumnInfo("title")
-    val title : String? = null,
+    val title : String?,
     @ColumnInfo("price")
-    val price : Double? = null, // Or BigDecimal
-    @ColumnInfo("description")
-    val description : String? = null,
+    val price : Double?, // Or BigDecimal
     @ColumnInfo("image")
-    val image : String? = null
+    val image : String?
 )

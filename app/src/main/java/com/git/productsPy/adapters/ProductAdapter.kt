@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.git.myapplication.R
+import com.git.productsPy.R
 import com.git.productsPy.models.Product
 import com.squareup.picasso.Picasso
 
@@ -16,8 +16,6 @@ class ProductAdapter(private val products : List<Product>,
     private val clickListener : OnItemClickListener) : Adapter<ProductAdapter.ProductViewHolder>() {
             inner class ProductViewHolder(itemView : View) : ViewHolder(itemView){
                 private val tvTitle : TextView = itemView.findViewById(R.id.tvTitleProduct)
-
-                private val tvDescription : TextView = itemView.findViewById(R.id.tvDescriptionProduct)
 
                 private val tvPrice : TextView = itemView.findViewById(R.id.tvPriceProduct)
 
@@ -28,8 +26,6 @@ class ProductAdapter(private val products : List<Product>,
                 fun bind(product : Product, clickListener: OnItemClickListener){
                     tvTitle.text = product.title
 
-                    tvDescription.text = product.description
-
                     tvPrice.text = product.price.toString()
 
                     Picasso.get().load(product.image)
@@ -37,7 +33,6 @@ class ProductAdapter(private val products : List<Product>,
                     btLike.setOnClickListener {
                         clickListener.onItemClick(product)
                     }
-
                 }
             }
 
@@ -58,6 +53,4 @@ class ProductAdapter(private val products : List<Product>,
     interface OnItemClickListener{
         fun onItemClick(product: Product)
     }
-
-
 }

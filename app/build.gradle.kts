@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.git.myapplication"
+    namespace = "com.git.productsPy"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.git.myapplication"
+        applicationId = "com.git.productsPy"
         minSdk = 28
         targetSdk = 34
         versionCode = 1
